@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
-DB_connect = 'postgres://klsoebfakrmjtk:430c231aed14113656f76665457180b3473ad68aa5a200653236369daa44e163@ec2-174-129-218-106.compute-1.amazonaws.com:5432/d26ll4tlthsiga'
+DB_connect = 'postgresql+psycopg2://postgres://klsoebfakrmjtk:430c231aed14113656f76665457180b3473ad68aa5a200653236369daa44e163@ec2-174-129-218-106.compute-1.amazonaws.com:5432/d26ll4tlthsiga'
 
 
 class Images(Base):
