@@ -1,5 +1,4 @@
 import time
-
 import requests
 from bs4 import BeautifulSoup
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -67,11 +66,14 @@ def craw_page(res, push_rate):
 
 
 def write_db(images, session):
+    print("XDXDXD")
     for image in images:
         is_exist = session.query(Images).filter(Images.Url == image).first()
         if not is_exist:
             data = Images(Url=image)
             session.add(data)
+
+    print("qqqqqq")
     session.commit()
 
 
@@ -82,10 +84,10 @@ def connect_db(db_string):
     return engine, session
 
 
-def main(crawler_pages=2):
+def main(crawler_pages=3):
     engine, session = connect_db(DB_connect)
     # python beauty_spider2.py [版名]  [爬幾頁] [推文多少以上]
-    board, page_term, push_rate = 'beauty', crawler_pages, 10
+    board, page_term, push_rate = 'beauty', crawler_pages, 40
     start_time = time.time()
     soup = over18(board)
     all_page_url = soup.select('.btn.wide')[1]['href']
