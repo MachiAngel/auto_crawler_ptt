@@ -1,3 +1,4 @@
+
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -10,6 +11,7 @@ from dbModel import Images, DB_connect
 
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 rs = requests.session()
+
 
 
 def get_page_number(content):
@@ -84,10 +86,10 @@ def connect_db(db_string):
     return engine, session
 
 
-def main(crawler_pages=3):
+def main(crawler_pages=2):
     engine, session = connect_db(DB_connect)
     # python beauty_spider2.py [版名]  [爬幾頁] [推文多少以上]
-    board, page_term, push_rate = 'beauty', crawler_pages, 40
+    board, page_term, push_rate = 'beauty', crawler_pages, 20
     start_time = time.time()
     soup = over18(board)
     all_page_url = soup.select('.btn.wide')[1]['href']
@@ -140,6 +142,7 @@ def main(crawler_pages=3):
 
 if __name__ == '__main__':
     print('main')
+
     main()
     schedule.every(30).minutes.do(main)
     while True:
